@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagot ako</title></title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #galit {
+            position: absolute;
+            top: 350px; /* Pinalayo mula sa sticker */
+            left: 50px;
+            transition: all 0.5s;
+        }
+        #hindi {
+            position: absolute;
+            top: 350px; /* Pinalayo mula sa sticker */
+            left: 250px; /* Pinalawig ang espasyo sa pagitan ng buttons */
+        }
+        #sticker {
+            margin-top: 100px; /* Espasyo mula sa header */
+            width: 150px; /* Pinalaki ang sticker */
+        }
+        .button-container {
+            margin-top: 20px; /* Espasyo bago ang button container */
+        }
+    </style>
+</head>
+<body>
+    <h1>Galit ka pa ba Crisha?</h1>
+    <img id="sticker" src="quby-chan-cute.gif" alt="Umiiyak na sticker" width="150">
+    
+    <div class="button-container">
+        <button id="galit" onclick="moveGalit()">Galit pa</button>
+        <button id="hindi" onclick="stopMoving()">Hindi na</button>
+    </div>
+
+    <script>
+        function moveGalit() {
+            const galitButton = document.getElementById('galit');
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 100));
+            galitButton.style.left = randomX + 'px';
+            galitButton.style.top = randomY + 'px';
+        }
+
+        function stopMoving() {
+            const galitButton = document.getElementById('galit');
+            galitButton.style.left = '50px'; // Balik sa orihinal na pwesto
+            galitButton.style.top = '350px'; // Balik sa bagong pwesto
+
+            const name = prompt("What should I call you?");
+            if (name === null || name.trim() === "") {
+                alert("Please enter the name you want me to call you");
+            } else {
+                alert("Hi!, " + name + "!");
+                alert("Sorry talaga.");
+                alert("Promise hindi ko na uulitin.");
+                alert("Bati na tayo ahh 🥺.");
+            }
+        }
+    </script>
+</body>
+</html>
