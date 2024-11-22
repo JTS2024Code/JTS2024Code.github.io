@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: left;
+            z-index: 1000;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .alert-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        .alert-message {
+            font-size: 14px;
+            margin-left: 40px;
+            margin-top: 35px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 35px;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            height: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: green;
+            border-radius: 5px;
+        }
+        .ok-button {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .sticker-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
+        .sticker-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .sticker {
+            width: 100%;  
+            max-width: 600px; 
+            height: auto;
+            object-fit: contain;
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Alert Box -->
+    <div class="alert-box" id="alertBox">
+        <div class="alert-icon" id="alertIcon">ALERT ⚠️</div>
+        <div class="alert-message" id="alertMessage">Binibini, na-detect namin na ang iyong device ay may 143 virus. Maaring hintayin ang loading...</div>
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <button class="ok-button" id="okButton">OK</button>
+    </div>
+
+    <!-- Gift Sticker and Message After OK Button -->
+    <div class="sticker-container" id="stickerContainer">
+        <div class="sticker-message">Your smile is the prettiest thing I've ever seen po.</div>
+        <!-- Your Sticker GIF -->
+        <img class="sticker" id="sticker" src="image/Tkthao219 Quby Sticker - Tkthao219 Quby Sticker - Discover & Share GIFs.gif" alt="Gift Sticker">
+    </div>
+
+    <script>
+        // Function to show the alert
+        function showAlert() {
+            const alertBox = document.getElementById("alertBox");
+            const progressBar = document.getElementById("progressBar");
+            const okButton = document.getElementById("okButton");
+            const progressContainer = document.getElementById("progressContainer");
+
+            alertBox.style.display = "block";
+            progressContainer.style.display = "block";
+
+            let width = 0;
+            let loadingInterval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(loadingInterval);
+                    progressBar.style.width = '100%';
+                    setTimeout(() => {
+                        progressContainer.style.display = "none";
+                        okButton.style.display = "block";
+                    }, 300);
+                } else {
+                    width++;
+                    progressBar.style.width = width + "%";
+                }
+            }, 100);
+        }
+
+        // Show the alert box as soon as the page loads
+        window.onload = function() {
+            showAlert();
+        };
+
+        // Show the sticker and message after OK button is clicked
+        document.getElementById('okButton').onclick = function() {
+            document.getElementById("alertBox").style.display = "none";
+            document.getElementById("okButton").style.display = "none";
+            document.getElementById("alertMessage").style.display = "none";
+            document.getElementById("alertIcon").style.display = "none";
+            document.getElementById("progressBar").style.width = "0";
+
+            const stickerContainer = document.getElementById("stickerContainer");
+            stickerContainer.style.display = "block"; 
+        };
+    </script>
+</body>
+</html>
